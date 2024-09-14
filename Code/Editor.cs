@@ -10,25 +10,30 @@ using Sparkle.CSharp.Content.Types;
 
 namespace Sparkle_Editor.Code;
 
-public class Editor : Game {
-    
+public class Editor : Game 
+{
     private string _title;
-    
-    public Editor(GameSettings settings, string title = "unkwn") : base(settings) { this._title = title; }
 
-    protected override void Init() {
+    public Editor(GameSettings settings, string title = "Editor") : base(settings)
+    {
+        this._title = title;
+    }
+
+    protected override void Init() 
+    {
         base.Init();
         
         Window.SetTitle(_title);
     }
 
-    protected override void Draw() {
+    protected override void Draw() 
+    {
         base.Draw();
 
-        if (Input.IsKeyDown(KeyboardKey.A)) {
-            Graphics.DrawCircle(0, 0, 20, Color.Blue);
+        if (Input.IsKeyDown(KeyboardKey.M)) {
+            Graphics.DrawCircle(50, 50, 200, Color.Blue);
         }
         
-        Window.SetTitle($"{_title} | {Time.GetFPS()} FPS");
+        Window.SetTitle($"{_title} [FPS: {Time.GetFPS()}]");
     }
 }

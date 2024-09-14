@@ -6,11 +6,12 @@ using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code.Scenes;
 
-public class DefaultScene : Scene {
+public class Test : Scene {
     
-    public DefaultScene() : base("Default Scene", SceneType.Scene3D) { }
+    public Test() : base("Default Scene", SceneType.Scene3D) { }
 
-    protected override void Init() {
+    protected override void Init() 
+    {
         base.Init();
         
         Vector3 pos = new Vector3(10.0f, 10.0f, 10.0f);
@@ -20,16 +21,14 @@ public class DefaultScene : Scene {
         this.AddEntity(cam3D);
     }
     
-    protected override void Draw() {
+    protected override void Draw() 
+    {
         base.Draw();
         
-        // BEGIN 3D
         SceneManager.ActiveCam3D!.BeginMode3D();
         
-        //DRAW GIRD
         Graphics.DrawGrid(100, 1);
         
-        // END 3D
         SceneManager.ActiveCam3D.EndMode3D();
     }
 }
