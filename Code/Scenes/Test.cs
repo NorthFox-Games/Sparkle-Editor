@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using Raylib_CSharp.Camera.Cam3D;
 using Raylib_CSharp.Rendering;
+using Sparkle_Editor.Code.Entities;
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Scenes;
 
@@ -15,8 +16,8 @@ public class Test : Scene {
         base.Init();
         
         Vector3 pos = new Vector3(10.0f, 10.0f, 10.0f);
-        Cam3D cam3D = new Cam3D(pos, Vector3.Zero, Vector3.UnitY, 90, CameraProjection.Perspective);
-        cam3D.MouseSensitivity = 1.5f;
+        EditorCam cam3D = new EditorCam(pos, Vector3.Zero, Vector3.UnitY, 90, CameraProjection.Perspective);
+        cam3D.MouseSensitivity = 1f;
         
         this.AddEntity(cam3D);
     }
