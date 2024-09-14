@@ -9,4 +9,8 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Sparkle" Version="4.0.1" />
+    </ItemGroup>
+
 </Project>
