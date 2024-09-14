@@ -1,22 +1,17 @@
-﻿using OpenTK.Mathematics;
-using Raylib_CSharp;
-using Raylib_CSharp.Colors;
-using Raylib_CSharp.Interact;
-using Raylib_CSharp.Rendering;
-using Raylib_CSharp.Textures;
+﻿using Raylib_CSharp;
 using Raylib_CSharp.Windowing;
 using Sparkle.CSharp;
-using Sparkle.CSharp.Content.Types;
+using Sparkle.CSharp.Registries;
 
 namespace Sparkle_Editor.Code;
 
-public class Editor : Game 
+public class Editor : Game // maybe its game, idk
 {
     private string _title;
 
-    public Editor(GameSettings settings, string title = "Editor") : base(settings)
+    public Editor(GameSettings settings, string title = "Sparkle Editor") : base(settings)
     {
-        this._title = title;
+        _title = title;
     }
 
     protected override void Init() 
@@ -25,14 +20,16 @@ public class Editor : Game
         
         Window.SetTitle(_title);
     }
+    
+    protected override void OnRun()
+    {
+        base.OnRun();
+        RegistryManager.AddType(new ContentRegistry());
+    }
 
     protected override void Draw() 
     {
         base.Draw();
-
-        if (Input.IsKeyDown(KeyboardKey.M)) {
-            Graphics.DrawCircle(50, 50, 200, Color.Blue);
-        }
         
         Window.SetTitle($"{_title} [FPS: {Time.GetFPS()}]");
     }

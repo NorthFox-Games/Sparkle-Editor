@@ -14,4 +14,8 @@
       <PackageReference Include="Sparkle" Version="4.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\Primitives\" />
+    </ItemGroup>
+
 </Project>

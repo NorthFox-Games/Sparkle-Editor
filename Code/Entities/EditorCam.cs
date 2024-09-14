@@ -8,9 +8,7 @@ namespace Sparkle_Editor.Code.Entities;
 public class EditorCam : Cam3D
 {
     public EditorCam(Vector3 position, Vector3 target, Vector3 up, float fov = 90, CameraProjection projection = CameraProjection.Perspective, CameraMode mode = CameraMode.Free)
-        : base(position, target, up, fov, projection, mode)
-    {
-    }
+        : base(position, target, up, fov, projection, mode) { }
 
     protected override void Init()
     {
@@ -22,7 +20,6 @@ public class EditorCam : Cam3D
         base.FixedUpdate();
     }
 
-
     protected override void Update()
     {
         base.Update();
@@ -32,7 +29,8 @@ public class EditorCam : Cam3D
             Mode = CameraMode.Free;
             Input.HideCursor();
             Input.DisableCursor();
-        } else if (Mode != CameraMode.Custom && !Input.IsMouseButtonDown(MouseButton.Right))
+        } 
+        else if (Mode != CameraMode.Custom && !Input.IsMouseButtonDown(MouseButton.Right))
         {
             Mode = CameraMode.Custom;
             Input.ShowCursor();
