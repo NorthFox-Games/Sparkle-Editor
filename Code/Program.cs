@@ -1,6 +1,6 @@
 ﻿using Sparkle.CSharp;
 
-namespace Sparkle_Editor.src;
+namespace Sparkle_Editor.Code;
 
 public static class Program
 {

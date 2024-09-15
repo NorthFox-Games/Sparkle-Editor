@@ -3,7 +3,7 @@ using Raylib_CSharp.Windowing;
 using Sparkle.CSharp;
 using Sparkle.CSharp.Registries;
 
-namespace Sparkle_Editor.src;
+namespace Sparkle_Editor.Code;
 
 public class Editor : Game // maybe its game, idk
 {

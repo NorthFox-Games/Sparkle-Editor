@@ -2,7 +2,7 @@
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Entities.Components;
 
-namespace Sparkle_Editor.src.Entities.Primitives;
+namespace Sparkle_Editor.Code.Entities.Primitives;
 
 public class Cube : Entity
 {
