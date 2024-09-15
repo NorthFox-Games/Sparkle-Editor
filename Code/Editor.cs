@@ -5,7 +5,7 @@ using Sparkle.CSharp.Registries;
 
 namespace Sparkle_Editor.Code;
 
-public class Editor : Game // maybe its game, idk
+public class Editor : Game
 {
     private string _title;
 
