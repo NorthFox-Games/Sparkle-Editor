@@ -3,7 +3,6 @@ Made by: Ivan Timersky & everyofflineuser
 
 
 <!--Блок информации о репозитории в бейджах-->
-![Static Badge](https://img.shields.io/badge/NorthWind-Team-sparkle-editor-sparkle-editor)
 ![GitHub top language](https://img.shields.io/github/languages/top/NorthWind-Team/sparkle-editor)
 ![GitHub](https://img.shields.io/github/license/NorthWind-Team/sparkle-editor)
 ![GitHub Repo stars](https://img.shields.io/github/stars/NorthWind-Team/sparkle-editor)
