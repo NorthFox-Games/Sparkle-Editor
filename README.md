@@ -1,16 +1,16 @@
 # Sparkle Editor
 Made by: Ivan Timersky & everyofflineuser
 
+## What is Sparkle Editor?
+### Sparkle Editor is a scene editor for Sparkle Engine (like hammer for source)
 
-<!--Блок информации о репозитории в бейджах-->
-![GitHub top language](https://img.shields.io/github/languages/top/NorthWind-Team/sparkle-editor)
-![GitHub](https://img.shields.io/github/license/NorthWind-Team/sparkle-editor)
-![GitHub Repo stars](https://img.shields.io/github/stars/NorthWind-Team/sparkle-editor)
-![GitHub issues](https://img.shields.io/github/issues/NorthWind-Team/sparkle-editor)
+![GitHub top language](https://img.shields.io/github/languages/top/NorthWind-Team/Sparkle-Editor)
+![GitHub](https://img.shields.io/github/license/NorthWind-Team/Sparkle-Editor)
+![GitHub Repo stars](https://img.shields.io/github/stars/NorthWind-Team/Sparkle-Editor)
+![GitHub issues](https://img.shields.io/github/issues/NorthWind-Team/Sparkle-Editor)
 
-[Releases]: https://github.com/NorthWind-Team/sparkle-editor/releases
+[Releases]: https://github.com/NorthWind-Team/Sparkle-Editor/releases
 
-<!--Commit Description-->
 ## Commit Description
 | Name | Description                                                        |
 |----------|-----------------------------------------------------------------|
