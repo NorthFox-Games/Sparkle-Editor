@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Sparkle.CSharp.Entities;
 
-namespace Sparkle_Editor.Code.Entities;
+namespace Sparkle_Editor.src.Entities;
 
 public class BaseEntity : Entity
 {

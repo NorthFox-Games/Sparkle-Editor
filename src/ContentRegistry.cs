@@ -3,7 +3,7 @@ using Sparkle.CSharp.Content;
 using Sparkle.CSharp.Content.Types;
 using Sparkle.CSharp.Registries;
 
-namespace Sparkle_Editor.Code;
+namespace Sparkle_Editor.src;
 
 public class ContentRegistry : Registry
 {
@@ -13,7 +13,7 @@ public class ContentRegistry : Registry
     {
         base.Load(content);
         
-        Models.Add("Cube", content.Load(new ModelContent("Models/Primitives/Cube.glb")));
+        Models.Add("Cube", content.Load(new ModelContent("content/models/Primitives/Cube.glb")));
         //[Raylib_CSharp.Logging.Logger :: TraceLogCallback] FILEIO: [Models/Primitives/Cube.glb] Failed to open file
         //[Raylib_CSharp.Logging.Logger :: TraceLogCallback] MESH: [Models/Primitives/Cube.glb] Failed to load model mesh(es) data
         //[Raylib_CSharp.Logging.Logger :: TraceLogCallback] MATERIAL: [Models/Primitives/Cube.glb] Failed to load model material data, default to white material

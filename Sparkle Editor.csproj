@@ -15,7 +15,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models\Primitives\" />
+      <Folder Include="C:\Users\time2\.nuget\packages\sparkle\4.0.1\contentFiles\any\net8.0\content\models\Primitives">
+        <Link>content\models\Primitives</Link>
+      </Folder>
+      <Folder Include="models\Primitives\" />
     </ItemGroup>
 
 </Project>

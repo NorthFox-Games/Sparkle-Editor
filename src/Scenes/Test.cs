@@ -1,10 +1,10 @@
 ﻿using System.Numerics;
 using Raylib_CSharp.Rendering;
-using Sparkle_Editor.Code.Entities;
-using Sparkle_Editor.Code.Entities.Primitives;
+using Sparkle_Editor.src.Entities;
+using Sparkle_Editor.src.Entities.Primitives;
 using Sparkle.CSharp.Scenes;
 
-namespace Sparkle_Editor.Code.Scenes;
+namespace Sparkle_Editor.src.Scenes;
 
 public class Test : Scene
 {
