@@ -13,7 +13,12 @@ public class ContentRegistry : Registry
     {
         base.Load(content);
         
-        // Load to RAM model (Cube)
+        // Load to RAM primitives models
         Models.Add("Cube", content.Load(new ModelContent("content/models/primitives/cube.glb")));
+        Models.Add("Sphere", content.Load(new ModelContent("content/models/primitives/sphere.glb")));
+        Models.Add("Cylinder", content.Load(new ModelContent("content/models/primitives/cylinder.glb")));
+        Models.Add("Plane", content.Load(new ModelContent("content/models/primitives/plane.glb")));
+        Models.Add("Cone", content.Load(new ModelContent("content/models/primitives/cone.glb")));
+        Models.Add("Gizmos", content.Load(new ModelContent("content/models/gizmos.glb")));
     }
 }

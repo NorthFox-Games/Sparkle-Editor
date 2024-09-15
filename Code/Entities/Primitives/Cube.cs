@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Jitter2.Collision.Shapes;
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Entities.Components;
 
@@ -12,7 +13,7 @@ public class Cube : Entity
     {
         base.Init();
         
-        ModelRenderer modelRenderer = new ModelRenderer(ContentRegistry.Models["Cube"], Vector3.Zero);
-        AddComponent(modelRenderer);
+        AddComponent(new ModelRenderer(ContentRegistry.Models["Cube"], Vector3.Zero));
+        //AddComponent(new RigidBody3D(new BoxShape(1f)));
     }
 }

@@ -3,6 +3,7 @@ using Raylib_CSharp.Rendering;
 using Sparkle_Editor.Code.Entities;
 using Sparkle_Editor.Code.Entities.Primitives;
 using Sparkle.CSharp.Scenes;
+using Plane = Sparkle_Editor.Code.Entities.Primitives.Plane;
 
 namespace Sparkle_Editor.Code.Scenes;
 
@@ -19,7 +20,14 @@ public class Test : Scene
         cam3D.MouseSensitivity = 1f;
         
         AddEntity(cam3D);
+        
+        //for test
         AddEntity(new Cube(new Vector3(0f,0f,0f)));
+        AddEntity(new Cone(new Vector3(2f,0f,0f)));
+        AddEntity(new Sphere(new Vector3(4f,0f,0f)));
+        AddEntity(new Plane(new Vector3(6f,0f,0f)));
+        AddEntity(new Cylinder(new Vector3(8f,0f,0f)));
+        AddEntity(new Gizmos(new Vector3(-8f,0f,0f)));
     }
     
     protected override void Draw() 
