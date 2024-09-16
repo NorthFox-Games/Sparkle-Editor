@@ -1,4 +1,5 @@
-﻿using Sparkle.CSharp;
+﻿using Sparkle_Editor.Code.UI;
+using Sparkle.CSharp;
 
 namespace Sparkle_Editor.Code;
 
@@ -10,5 +11,7 @@ public static class Program
 
         using Editor game = new Editor(settings, "Editor");
         game.Run(new Scenes.Test());
+        
+        UiManager.StartTestApp();
     }
 }
