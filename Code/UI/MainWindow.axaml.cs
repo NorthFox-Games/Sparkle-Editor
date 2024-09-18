@@ -1,12 +1,11 @@
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 
 namespace Sparkle_Editor.Code.UI;
 
 public partial class MainWindow : Window
 {
-    private void OnButtonClick(object sender, RoutedEventArgs e)
+    public MainWindow()
     {
-        Console.WriteLine("Button clicked!");
+        InitializeComponent();
     }
 }
