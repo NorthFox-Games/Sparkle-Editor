@@ -15,7 +15,6 @@ public static class Program
         
         GameThread.Start();
         UIThread.Start();
-        
     }
 
     private static void Game()
