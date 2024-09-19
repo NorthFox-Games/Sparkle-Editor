@@ -1,4 +1,5 @@
 ﻿using Raylib_CSharp;
+using Raylib_CSharp.Collision;
 using Raylib_CSharp.Windowing;
 using Sparkle.CSharp;
 using Sparkle.CSharp.Registries;
