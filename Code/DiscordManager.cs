@@ -1,6 +1,5 @@
 ﻿using DiscordRPC;
 using DiscordRPC.Logging;
-using Sparkle.CSharp.Logging;
 
 namespace Sparkle_Editor.Code;
 
@@ -46,7 +45,12 @@ public static class DiscordManager
             {
                 LargeImageKey = "logo",
                 LargeImageText = "Sparkle Editor"
-            }
+            },
+            Timestamps = new Timestamps()
+            {
+                Start = DateTime.UtcNow
+            },
+            Buttons = new Button[] { new Button() {Label = "Our Discord", Url = "https://discord.gg/RxfMJjcJw2"}}
         }); 
     }
 }
