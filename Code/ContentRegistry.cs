@@ -19,6 +19,8 @@ public class ContentRegistry : Registry
         Models.Add("Cylinder", content.Load(new ModelContent("content/models/primitives/cylinder.glb")));
         Models.Add("Plane", content.Load(new ModelContent("content/models/primitives/plane.glb")));
         Models.Add("Cone", content.Load(new ModelContent("content/models/primitives/cone.glb")));
+        
+        // this is not primitive xd
         Models.Add("Gizmos", content.Load(new ModelContent("content/models/gizmos.glb")));
     }
 }
