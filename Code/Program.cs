@@ -8,13 +8,16 @@ namespace Sparkle_Editor.Code;
 public static class Program
 {
     public static Version Version = Assembly.GetEntryAssembly().GetName().Version;
+
+    public static Thread UIThread { get; private set; }
+    public static Thread GameThread { get; private set; }
     
     [STAThread]
     private static void Main(string[] args)
     {
         // For some reason it doesn't work on Mac(ARM) processors (Tested on Apple M2)
-        Thread GameThread = new Thread(new ThreadStart(Game));
-        Thread UIThread = new Thread(() => BuildAvaloniaApp()
+        GameThread = new Thread(new ThreadStart(Game));
+        UIThread = new Thread(() => BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args));
         
         DiscordManager.Initialize();

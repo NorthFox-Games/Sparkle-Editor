@@ -45,5 +45,6 @@ public class Editor : Game
         base.OnClose();
         
         DiscordManager.Client.Dispose();
+        Environment.Exit(0);
     }
 }
