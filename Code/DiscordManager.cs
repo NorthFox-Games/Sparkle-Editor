@@ -7,15 +7,11 @@ public static class DiscordManager
 {
     public static DiscordRpcClient Client;
 
-    //Called when your application first starts.
-    //For example, just before your main loop, on OnEnable for unity.
+    /// <summary>
+    /// Connect RPC and Subscribe to events
+    /// </summary>
     public static void Initialize() 
     {
-        /*
-        Create a Discord Client
-        NOTE:   If you are using Unity3D, you must use the full constructor and define
-                 the pipe connection.
-        */
         Client = new DiscordRpcClient("1286649594268352613");          
 
         //Set the logger

@@ -9,9 +9,12 @@ public static class Program
 {
     public static Version Version = Assembly.GetEntryAssembly().GetName().Version;
 
-    public static Thread UIThread { get; private set; }
-    public static Thread GameThread { get; private set; }
+    private static Thread UIThread;
+    private static Thread GameThread;
     
+    /// <summary>
+    /// Run 2 thread (UI and Game) and initialize discord RPC
+    /// </summary>
     [STAThread]
     private static void Main(string[] args)
     {
@@ -29,6 +32,9 @@ public static class Program
         UIThread.Start();
     }
 
+    /// <summary>
+    /// Setting game window and Run it
+    /// </summary>
     private static void Game()
     {
         GameSettings settings = new GameSettings();
@@ -37,7 +43,9 @@ public static class Program
         game.Run(new Scenes.Test());
     }
 
-    // Avalonia configuration, don't remove; also used by visual designer.
+    /// <summary>
+    /// Configure App for Avalonia
+    /// </summary>
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()

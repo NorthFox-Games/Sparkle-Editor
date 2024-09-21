@@ -78,6 +78,9 @@ public class Test : Scene
         }
     }
     
+    /// <summary>
+    /// Check entity in camera range or not
+    /// </summary>
     private bool IsEntityInCameraRange(Entity entity, float range)
     {
         Vector3 entityPosition = entity.Position; // get 3D pos entity
@@ -90,7 +93,9 @@ public class Test : Scene
         return distance <= range;
     }
 
-    // Checking ray intersection with AABB (axis-aligned bounding box)
+    /// <summary>
+    /// Checking ray intersection with AABB (axis-aligned bounding box)
+    /// </summary>
     private bool RayIntersectsAABB(Ray ray, Vector3 minBounds, Vector3 maxBounds)
     {
         float tmin = (minBounds.X - ray.Position.X) / ray.Direction.X;
