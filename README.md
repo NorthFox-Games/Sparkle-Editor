@@ -6,7 +6,6 @@ Made by: Ivan Timersky & everyofflineuser
 ![GitHub Repo stars](https://img.shields.io/github/stars/NorthFox-Games/Sparkle-Editor)
 ![GitHub issues](https://img.shields.io/github/issues/NorthFox-Games/Sparkle-Editor)
 
-
 # [Report Page](https://github.com/NorthFox-Games/Sparkle-Editor/issues/new/choose)
 
 ## What is Sparkle Editor?
