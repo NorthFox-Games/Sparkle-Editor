@@ -1,8 +1,14 @@
-﻿using Raylib_CSharp;
+﻿using System.Numerics;
+using Raylib_CSharp;
+using Raylib_CSharp.Interact;
+using Raylib_CSharp.Transformations;
 using Raylib_CSharp.Windowing;
 using Sparkle.CSharp;
+using Sparkle.CSharp.Entities;
+using Sparkle.CSharp.Entities.Components;
 using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Registries;
+using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code;
 
@@ -39,6 +45,7 @@ public class Editor : Game
         
         Window.SetTitle($"{_title} [FPS: {Time.GetFPS()}]");
     }
+
 
     protected override void OnClose()
     {
