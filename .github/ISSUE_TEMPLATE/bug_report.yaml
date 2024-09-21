@@ -1,0 +1,74 @@
+﻿name: Bug Report
+description: File a bug report
+title: "[Bug]: <Short Description of the bug, change this>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. In this environment (Written at the top when you start the program)...
+        2. Run '...'
+        3. See error...
+    validations:
+      required: true
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Actual Behavior
+      description: A concise description of what you're experiencing.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      options:
+        - Windows <10 x64
+        - Windows 10 x64
+        - Windows 11 x64
+        - MacOS x64
+        - Linux Debian x64
+        - Linux Ubuntu x64
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: |
+        vX.Y.Z
+      description: What version of our game are you running?
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here, if you want to.
+    validations:
+      required: false
+  - type: input
+    id: contact-information
+    attributes:
+      label: Contact information
+      description: |
+        How can we get in touch with you if we need more info?
+      placeholder: |
+        ex. yourname@gmail.com, Discord username, etc.
+    validations:
+      required: false

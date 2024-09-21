@@ -7,6 +7,8 @@ Made by: Ivan Timersky & everyofflineuser
 ![GitHub issues](https://img.shields.io/github/issues/NorthFox-Games/Sparkle-Editor)
 
 
+# [Report Page](https://github.com/NorthFox-Games/Sparkle-Editor/issues/new/choose)
+
 ## What is Sparkle Editor?
 ### Sparkle Editor is a scene editor for Sparkle Engine (like hammer for source)
 
