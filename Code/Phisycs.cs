@@ -10,6 +10,11 @@ public static class Phisycs
 {
     private const int Range = 8;
     
+    /// <summary>
+    /// Throws a beam from the cursor and checks if you hit and returns the Entity you hit.
+    /// </summary>
+    /// <param name="hit">The Entity you're in.</param>
+    /// <returns>true if you hit, false if you don't.</returns>
     public static bool Raycast(out Entity hit)
     {
         hit = null;
