@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
-using Avalonia;
-using Sparkle_Editor.Code.UI;
+using CopperDevs.Core.Utility;
+using CopperDevs.DearImGui;
+using CopperDevs.DearImGui.Renderer.Raylib;
+using Raylib_CSharp.Windowing;
 using Sparkle.CSharp;
 
 namespace Sparkle_Editor.Code;
@@ -9,7 +11,7 @@ public static class Program
 {
     public static Version Version = Assembly.GetEntryAssembly().GetName().Version;
 
-    private static Thread UIThread;
+    //private static Thread UIThread;
     private static Thread GameThread;
     
     /// <summary>
@@ -23,13 +25,13 @@ public static class Program
         
         // For some reason it doesn't work on Mac(ARM) processors (Tested on Apple M2)
         GameThread = new Thread(new ThreadStart(Game));
-        UIThread = new Thread(() => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args));
+        //UIThread = new Thread(() => BuildAvaloniaApp()
+            //.StartWithClassicDesktopLifetime(args));
         
         DiscordManager.Initialize();
         
         GameThread.Start();
-        UIThread.Start();
+        //UIThread.Start();
     }
 
     /// <summary>
@@ -42,12 +44,16 @@ public static class Program
         using Editor game = new Editor(settings, "Editor");
         game.Run(new Scenes.Test());
     }
+    
+    internal static void SetWindowStyling() 
+    {
+        if (!WindowsApi.IsWindows11)
+            return;
+        
+        var handle = Window.GetHandle();
 
-    /// <summary>
-    /// Configure App for Avalonia
-    /// </summary>
-    public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .LogToTrace();
+        WindowsApi.SetDwmImmersiveDarkMode(handle, true);
+        WindowsApi.SetDwmSystemBackdropType(handle, WindowsApi.SystemBackdropType.Acrylic);
+        WindowsApi.SetDwmWindowCornerPreference(handle, WindowsApi.WindowCornerPreference.Default);
+    }
 }

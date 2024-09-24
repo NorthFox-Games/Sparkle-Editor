@@ -1,12 +1,15 @@
 ﻿using System.Numerics;
+using CopperDevs.DearImGui;
 using Raylib_CSharp;
 using Raylib_CSharp.Interact;
 using Raylib_CSharp.Transformations;
 using Raylib_CSharp.Windowing;
+using Sparkle_Editor.Code.ImGui;
 using Sparkle.CSharp;
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Entities.Components;
 using Sparkle.CSharp.Logging;
+using Sparkle.CSharp.Overlays;
 using Sparkle.CSharp.Registries;
 using Sparkle.CSharp.Scenes;
 
@@ -26,6 +29,12 @@ public class Editor : Game
         base.Init();
         
         Window.SetTitle(_title);
+        
+        var myOverlay = new DearImGuiOverlay("DearImGui Overlay")
+        {
+            Enabled = true,
+        };
+        OverlayManager.Add(myOverlay);
     }
     
     protected override void OnRun()
@@ -43,6 +52,8 @@ public class Editor : Game
     {
         base.Draw();
         
+        CopperImGui.Render();
+        
         Window.SetTitle($"{_title} [FPS: {Time.GetFPS()}]");
     }
 
@@ -51,6 +62,7 @@ public class Editor : Game
     {
         base.OnClose();
         
+        CopperImGui.Shutdown();
         DiscordManager.Client.Dispose();
         Environment.Exit(0);
     }
