@@ -10,7 +10,7 @@ public class DearImGuiOverlay : Overlay
     {
         CopperImGui.Setup<RlImGuiRenderer>(true, true);
         CopperImGui.ShowDearImGuiAboutWindow = false;
-        CopperImGui.ShowDearImGuiDemoWindow = true;
+        CopperImGui.ShowDearImGuiDemoWindow = false;
         CopperImGui.ShowDearImGuiMetricsWindow = false;
         CopperImGui.ShowDearImGuiDebugLogWindow = false;
         CopperImGui.ShowDearImGuiIdStackToolWindow = false;
