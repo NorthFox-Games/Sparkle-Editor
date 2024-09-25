@@ -18,21 +18,9 @@ public static class Program
         
         GameSettings settings = new GameSettings();
         
+        DiscordManager.Initialize();
+        
         using Editor game = new Editor(settings, "Editor");
         game.Run(new Scenes.Test());
-        
-        DiscordManager.Initialize();
-    }
-    
-    internal static void SetWindowStyling() 
-    {
-        if (!WindowsApi.IsWindows11)
-            return;
-        
-        var handle = Window.GetHandle();
-
-        WindowsApi.SetDwmImmersiveDarkMode(handle, true);
-        WindowsApi.SetDwmSystemBackdropType(handle, WindowsApi.SystemBackdropType.Acrylic);
-        WindowsApi.SetDwmWindowCornerPreference(handle, WindowsApi.WindowCornerPreference.Default);
     }
 }
