@@ -1,5 +1,6 @@
 ﻿using CopperDevs.DearImGui;
 using CopperDevs.DearImGui.Renderer.Raylib;
+using CopperDevs.Logger;
 using Sparkle.CSharp.Overlays;
 
 namespace Sparkle_Editor.Code.ImGui;
