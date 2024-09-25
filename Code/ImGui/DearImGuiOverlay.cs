@@ -10,10 +10,10 @@ public class DearImGuiOverlay : Overlay
     {
         CopperImGui.Setup<RlImGuiRenderer>(true, true);
         CopperImGui.ShowDearImGuiAboutWindow = true;
-        CopperImGui.ShowDearImGuiDemoWindow = true;
-        CopperImGui.ShowDearImGuiMetricsWindow = true;
-        CopperImGui.ShowDearImGuiDebugLogWindow = true;
-        CopperImGui.ShowDearImGuiIdStackToolWindow = true;
+        CopperImGui.ShowDearImGuiDemoWindow = false;
+        CopperImGui.ShowDearImGuiMetricsWindow = false;
+        CopperImGui.ShowDearImGuiDebugLogWindow = false;
+        CopperImGui.ShowDearImGuiIdStackToolWindow = false;
     }
 
     protected override void Draw()

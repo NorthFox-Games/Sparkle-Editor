@@ -52,8 +52,6 @@ public class Editor : Game
     {
         base.Draw();
         
-        CopperImGui.Render();
-        
         Window.SetTitle($"{_title} [FPS: {Time.GetFPS()}]");
     }
 
@@ -61,8 +59,7 @@ public class Editor : Game
     protected override void OnClose()
     {
         base.OnClose();
-        
-        CopperImGui.Shutdown();
+
         DiscordManager.Client.Dispose();
         Environment.Exit(0);
     }
