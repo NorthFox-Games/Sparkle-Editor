@@ -8,8 +8,8 @@ using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code.ImGui;
 
-[Window("Hierarchy", WindowOpen = true)]
-public class Hierarchy : BaseWindow
+[Window("EntityList", WindowOpen = true)]
+public class EntityList : BaseWindow
 {
     public override void WindowUpdate()
     {

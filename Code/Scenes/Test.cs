@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using Raylib_CSharp.Collision;
 using Raylib_CSharp.Interact;
 using Raylib_CSharp.Rendering;
 using Sparkle_Editor.Code.Entities;
