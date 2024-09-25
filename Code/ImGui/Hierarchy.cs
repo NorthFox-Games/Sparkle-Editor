@@ -27,7 +27,7 @@ public class Hierarchy : BaseWindow // inheriting from BaseWindow isn't required
         {
             if (entity == null || entity.HasDisposed) continue;
             
-            CopperImGui.Button($"{entity.Id}: Entity", () =>
+            CopperImGui.Selectable($"{entity.Id}: Entity", () =>
             {
                 Logger.Info($"Entity: {entity.Id}");
                 _selectedEntity = entity;
