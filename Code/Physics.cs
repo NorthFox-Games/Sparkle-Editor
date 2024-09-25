@@ -6,7 +6,7 @@ using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code;
 
-public static class Phisycs
+public static class Physics
 {
     private const int Range = 8;
     

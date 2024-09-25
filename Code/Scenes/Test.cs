@@ -47,7 +47,7 @@ public class Test : Scene
     {
         base.Update();
 
-        if (Input.IsMouseButtonReleased(MouseButton.Left) && Phisycs.Raycast(out Entity hit))
+        if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
         {
             Logger.Info($"Entity ID: {hit.Id}");
         }

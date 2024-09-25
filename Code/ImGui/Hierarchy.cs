@@ -1,25 +1,24 @@
 ﻿using CopperDevs.DearImGui;
 using CopperDevs.DearImGui.Attributes;
 using CopperDevs.DearImGui.Rendering;
-using Sparkle.CSharp.Entities;
+using ImGuiNET;
+using Sparkle_Editor.Code.Managers;
 using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code.ImGui;
 
 [Window("Hierarchy", WindowOpen = true)]
-public class Hierarchy : BaseWindow // inheriting from BaseWindow isn't required (only applying the Window attribute is), but you can inherit from it anyways so you can hard type the names
+public class Hierarchy : BaseWindow
 {
-    private Entity _selectedEntity = null;
-    
     public override void WindowUpdate()
     {
         CopperImGui.Button("Delete entity", () =>
         {
-            if (_selectedEntity == null) return;
+            if (SelectingManager.SelectedEntity == null) return;
 
-            _selectedEntity.Dispose();
-            _selectedEntity = null;
+            SelectingManager.SelectedEntity.Dispose();
+            SelectingManager.SelectedEntity = null;
             Logger.Info("Entity has been deleted!");
         });
         
@@ -27,11 +26,19 @@ public class Hierarchy : BaseWindow // inheriting from BaseWindow isn't required
         {
             if (entity == null || entity.HasDisposed) continue;
             
-            CopperImGui.Selectable($"{entity.Id}: Entity", () =>
+            ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.Leaf;
+            if (SelectingManager.SelectedEntity == entity) flag |= ImGuiTreeNodeFlags.Selected;
+            
+            if (ImGuiNET.ImGui.TreeNodeEx($"{entity.Id}: Entity", flag))
             {
-                Logger.Info($"Entity: {entity.Id}");
-                _selectedEntity = entity;
-            });
+                if (ImGuiNET.ImGui.IsItemClicked())
+                {
+                    Logger.Info($"Entity: {entity.Id}");
+                    SelectingManager.SelectedEntity = entity;
+                }
+                
+                ImGuiNET.ImGui.TreePop();
+            }
         }
     }
 }

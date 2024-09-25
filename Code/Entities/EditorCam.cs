@@ -1,24 +1,17 @@
 ﻿using System.Numerics;
 using Raylib_CSharp.Camera.Cam3D;
 using Raylib_CSharp.Interact;
+using Sparkle_Editor.Code.Interfaces;
 using Sparkle.CSharp.Entities;
 
 namespace Sparkle_Editor.Code.Entities;
 
-public class EditorCam : Cam3D
+public class EditorCam : Cam3D, IEntity
 {
     public EditorCam(Vector3 position, Vector3 target, Vector3 up, float fov = 90, CameraProjection projection = CameraProjection.Perspective, CameraMode mode = CameraMode.Free)
         : base(position, target, up, fov, projection, mode) { }
 
-    protected override void Init()
-    {
-        base.Init();
-    }
-
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
+    public string Name { get; set; } = "Camera";
 
     protected override void Update()
     {
