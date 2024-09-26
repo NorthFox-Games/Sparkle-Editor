@@ -1,8 +1,12 @@
 ﻿using System.Numerics;
+using CopperDevs.DearImGui;
 using Raylib_CSharp.Interact;
 using Raylib_CSharp.Rendering;
 using Sparkle_Editor.Code.Entities;
+using Sparkle_Editor.Code.Entities.Editor;
+using Sparkle_Editor.Code.EventArgs;
 using Sparkle.CSharp.Entities;
+using Sparkle.CSharp.Entities.Components;
 using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Scenes;
 
@@ -12,6 +16,8 @@ public class Test : Scene
 {
     public Test() : base("Test", SceneType.Scene3D) { }
 
+    public static event EventHandler<CreateEntityEventArgs> CreateEntity; //nado sdelat: find new realization because its a shit
+    
     protected override void Init() 
     {
         base.Init();
@@ -23,12 +29,14 @@ public class Test : Scene
         AddEntity(cam3D);
         
         //for test
-        AddEntity(new ModelRender(new Vector3(0f,0f,0f), ContentRegistry.Models["Cube"]));
-        AddEntity(new ModelRender(new Vector3(2f,0f,0f), ContentRegistry.Models["Cone"]));
-        AddEntity(new ModelRender(new Vector3(4f,0f,0f), ContentRegistry.Models["Sphere"]));
-        AddEntity(new ModelRender(new Vector3(6f,0f,0f), ContentRegistry.Models["Plane"]));
-        AddEntity(new ModelRender(new Vector3(8f,0f,0f), ContentRegistry.Models["Cylinder"]));
+        AddEntity(new Primitive("Cube", new Vector3(0f,0f,0f), new ModelRenderer(ContentRegistry.Models["Cube"], Vector3.Zero)));
+        AddEntity(new Primitive("Cone", new Vector3(2f,0f,0f), new ModelRenderer(ContentRegistry.Models["Cone"], Vector3.Zero)));
+        AddEntity(new Primitive("Sphere", new Vector3(4f,0f,0f), new ModelRenderer(ContentRegistry.Models["Sphere"], Vector3.Zero)));
+        AddEntity(new Primitive("Plane", new Vector3(6f,0f,0f), new ModelRenderer(ContentRegistry.Models["Plane"], Vector3.Zero)));
+        AddEntity(new Primitive("Cylinder", new Vector3(8f,0f,0f), new ModelRenderer(ContentRegistry.Models["Cylinder"], Vector3.Zero)));
         AddEntity(new Gizmos(new Vector3(-8f,0f,0f)));
+
+        CreateEntity += OnCreateEntity;
     }
     
     protected override void Draw() 
@@ -49,6 +57,26 @@ public class Test : Scene
         if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
         {
             Logger.Info($"Entity ID: {hit.Id}");
+        }
+    }
+
+    private void OnCreateEntity(object sender, CreateEntityEventArgs ev)
+    {
+        var ent = new Entity(ev.Entity.Position);
+        ent.Rotation = ev.Entity.Rotation;
+        ent.Scale = ev.Entity.Scale;
+        ent.Tag = ev.Entity.Tag;
+        ent.AddComponent(ev.Entity.GetComponent<ModelRenderer>());
+        
+        AddEntity(ent);
+    }
+    
+    public static void CreateEntityInvoke(Entity entity)
+    {
+        if (CreateEntity != null)
+        {
+            CreateEntityEventArgs args = new CreateEntityEventArgs(entity);
+            CreateEntity("skull", args);
         }
     }
 }
