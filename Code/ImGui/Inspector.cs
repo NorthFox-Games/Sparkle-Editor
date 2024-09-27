@@ -20,8 +20,23 @@ public class Inspector : BaseWindow
         Quaternion tempRotation = ent.Rotation;
         Vector3 tempScale = ent.Scale;
         
-        CopperImGui.Text($"ID: {ent.Id}");
-        CopperImGui.Text($"TAG: {ent.Tag}");
+        CopperImGui.HorizontalGroup(
+            () => {CopperImGui.Button("Delete", () => {SelectingManager.SelectedEntity.Dispose();});}
+            //() => {CopperImGui.Button("Copy", () => { SelectingManager.CopyEntity();});}, 
+            //() => {CopperImGui.Button("Paste", () => { SelectingManager.PasteEntity();});},
+            //() => {CopperImGui.Button("Duplicate", () => { SelectingManager.DuplicateEntity();});
+            );
+
+        CopperImGui.Separator("Information");
+        
+        CopperImGui.Text($"Id: {ent.Id}");
+        //CopperImGui.Text($"Name: {ent}");
+        if (!string.IsNullOrEmpty(ent.Tag))
+        {
+            CopperImGui.Text($"Tag: {ent.Tag}");
+        }
+        
+        CopperImGui.Space();
         
         ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick;
         
@@ -63,7 +78,18 @@ public class Inspector : BaseWindow
             string compName = comp.ToString().Replace(comp.GetType().Namespace + ".", string.Empty);
             if (ImGuiNET.ImGui.TreeNodeEx(compName, flag))
             {
+                Vector3 offsetPos = comp.OffsetPos;
+                    
+                if (ImGuiNET.ImGui.TreeNodeEx("Offset Position", flag))
+                {
+                    CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref offsetPos.X);});
+                    CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref offsetPos.Y);}); 
+                    CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref offsetPos.Z);});
+            
+                    ImGuiNET.ImGui.TreePop();
+                }
                 
+                comp.OffsetPos = offsetPos;
                 
                 ImGuiNET.ImGui.TreePop();
             }
