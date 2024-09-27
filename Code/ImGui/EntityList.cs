@@ -13,32 +13,33 @@ public class EntityList : BaseWindow
 {
     public override void WindowUpdate()
     {
-        CopperImGui.Button("Delete entity", () =>
-        {
-            if (SelectingManager.SelectedEntity == null) return;
-
-            SelectingManager.SelectedEntity.Dispose();
-            SelectingManager.SelectedEntity = null;
-            Logger.Info("Entity has been deleted!");
-        });
+        base.WindowUpdate();
         
-        foreach (var entity in SceneManager.ActiveScene.GetEntities())
+        if (ImGuiNET.ImGui.TreeNodeEx(SceneManager.ActiveScene.Name, ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick))
         {
-            if (entity == null || entity.HasDisposed) continue;
-            
-            ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.Leaf;
-            if (SelectingManager.SelectedEntity == entity) flag |= ImGuiTreeNodeFlags.Selected;
-            
-            if (ImGuiNET.ImGui.TreeNodeEx($"{entity.Id}: Entity", flag))
+            foreach (var entity in SceneManager.ActiveScene.GetEntities())
             {
-                if (ImGuiNET.ImGui.IsItemClicked())
+                if (entity == null || entity.HasDisposed || entity.Id == 1) continue;
+            
+                ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.Leaf;
+                if (SelectingManager.SelectedEntity == entity) flag |= ImGuiTreeNodeFlags.Selected;
+            
+                if (ImGuiNET.ImGui.TreeNodeEx($"{entity.Id}: Entity", flag))
                 {
-                    Logger.Info($"Entity: {entity.Id}");
-                    SelectingManager.SelectedEntity = entity;
-                }
+                    if (ImGuiNET.ImGui.IsItemClicked())
+                    {
+                        Logger.Info($"Entity: {entity.Id}");
+                        SelectingManager.SelectedEntity = entity;
+                    }
                 
-                ImGuiNET.ImGui.TreePop();
+                    ImGuiNET.ImGui.TreePop();
+                }
             }
         }
+        
+        (string, Action?)[] MenuActions = new (string, Action?)[] {("Scene", () => CopperImGui.MenuItem("New Scene",
+            () => { Logger.Info("file test");}))};
+
+        CopperImGui.MenuBar(true, MenuActions);
     }
 }

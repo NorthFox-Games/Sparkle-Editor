@@ -1,5 +1,6 @@
 ﻿using CopperDevs.DearImGui;
 using CopperDevs.DearImGui.Renderer.Raylib;
+using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Overlays;
 
 namespace Sparkle_Editor.Code.ImGui;
@@ -10,7 +11,7 @@ public class DearImGuiOverlay : Overlay
     {
         CopperImGui.Setup<RlImGuiRenderer>(true, true);
         CopperImGui.ShowDearImGuiAboutWindow = false;
-        CopperImGui.ShowDearImGuiDemoWindow = false;
+        CopperImGui.ShowDearImGuiDemoWindow = true;
         CopperImGui.ShowDearImGuiMetricsWindow = false;
         CopperImGui.ShowDearImGuiDebugLogWindow = false;
         CopperImGui.ShowDearImGuiIdStackToolWindow = false;

@@ -12,6 +12,8 @@ public class Inspector : BaseWindow
 {
     public override void WindowUpdate()
     {
+        base.WindowUpdate();
+        
         var ent = SelectingManager.SelectedEntity;
          
         if (ent == null) return;
@@ -21,7 +23,7 @@ public class Inspector : BaseWindow
         Vector3 tempScale = ent.Scale;
         
         CopperImGui.HorizontalGroup(
-            () => {CopperImGui.Button("Delete", () => {SelectingManager.SelectedEntity.Dispose();});}
+            () => {CopperImGui.Button("Delete", () => {SelectingManager.DeleteSelectedEntity();});}
             //() => {CopperImGui.Button("Copy", () => { SelectingManager.CopyEntity();});}, 
             //() => {CopperImGui.Button("Paste", () => { SelectingManager.PasteEntity();});},
             //() => {CopperImGui.Button("Duplicate", () => { SelectingManager.DuplicateEntity();});
@@ -39,30 +41,35 @@ public class Inspector : BaseWindow
         CopperImGui.Space();
         
         ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick;
-        
-        if (ImGuiNET.ImGui.TreeNodeEx("Position", flag))
+
+        if (ImGuiNET.ImGui.TreeNodeEx("Transform", flag))
         {
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempPosition.X);});
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempPosition.Y);}); 
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempPosition.Z);});
+            if (ImGuiNET.ImGui.TreeNodeEx("Position", flag))
+            {
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempPosition.X);});
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempPosition.Y);}); 
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempPosition.Z);});
             
-            ImGuiNET.ImGui.TreePop();
-        }
-        //doesnt work
-        if (ImGuiNET.ImGui.TreeNodeEx("Rotation", flag))
-        {
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempRotation.X);});
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempRotation.Y);}); 
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempRotation.Z);});
+                ImGuiNET.ImGui.TreePop();
+            }
+            //doesnt work
+            if (ImGuiNET.ImGui.TreeNodeEx("Rotation", flag))
+            {
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempRotation.X);});
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempRotation.Y);}); 
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempRotation.Z);});
             
-            ImGuiNET.ImGui.TreePop();
-        }
+                ImGuiNET.ImGui.TreePop();
+            }
         
-        if (ImGuiNET.ImGui.TreeNodeEx("Scale", flag))
-        {
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempScale.X);});
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempScale.Y);}); 
-            CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempScale.Z);});
+            if (ImGuiNET.ImGui.TreeNodeEx("Scale", flag))
+            {
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempScale.X);});
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempScale.Y);}); 
+                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempScale.Z);});
+            
+                ImGuiNET.ImGui.TreePop();
+            }
             
             ImGuiNET.ImGui.TreePop();
         }
