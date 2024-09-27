@@ -2,11 +2,12 @@
 using Raylib_CSharp.Geometry;
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Entities.Components;
+using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code.Entities.Editor;
 
-public class EditorEntity : Entity
+public abstract class EditorEntity : Entity
 {
     public ModelRenderer Model { get; }
     public string Name { get; }
@@ -27,9 +28,12 @@ public class EditorEntity : Entity
     {
         base.Init();
 
+        Logger.Info($"Initializing {Name}");
+        
         if (Model == null)
         {
             AddComponent(new ModelRenderer(ContentRegistry.Models["Empty"], Vector3.Zero));
+            Logger.Info($"Empty model {Name}");
         }
         else
         {
