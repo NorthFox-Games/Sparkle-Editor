@@ -18,14 +18,23 @@
       <PackageReference Include="CopperDevs.DearImGui" Version="1.2.1" />
       <PackageReference Include="CopperDevs.DearImGui.Renderer.Raylib" Version="1.1.2" />
       <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+      <PackageReference Include="Box2D.NetStandard" Version="2.4.7-alpha" />
+      <PackageReference Include="Jitter2" Version="2.4.0" />
+      <PackageReference Include="LibNoise" Version="0.2.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-      <PackageReference Include="Sparkle" Version="4.0.1" />
+      <PackageReference Include="OpenTK.Graphics" Version="5.0.0-pre.11" />
+      <PackageReference Include="Raylib-CSharp" Version="4.1.9" />
     </ItemGroup>
     
     <ItemGroup>
-        <Content Include="content/**/*">
+        <Content Include="$(SPARKLE_LIB)/**/*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
-
+    
+    <ItemGroup>
+      <Reference Include="Sparkle">
+        <HintPath>$(SPARKLE_LIB)\Sparkle.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 </Project>
