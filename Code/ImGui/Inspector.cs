@@ -58,14 +58,15 @@ public class Inspector : BaseWindow
         
         CopperImGui.Separator("Components");
         
-        //foreach (var comp in ent)
-        //{
-        //    if (ImGuiNET.ImGui.TreeNodeEx($"", flag))
-        //    {
-        //        
-        //        
-        //        ImGuiNET.ImGui.TreePop();
-        //    }
-        //}
+        foreach (var comp in ent.GetComponents())
+        {
+            string compName = comp.ToString().Replace(comp.GetType().Namespace + ".", string.Empty);
+            if (ImGuiNET.ImGui.TreeNodeEx(compName, flag))
+            {
+                
+                
+                ImGuiNET.ImGui.TreePop();
+            }
+        }
     }
 }

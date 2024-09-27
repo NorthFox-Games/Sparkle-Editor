@@ -34,7 +34,7 @@ public class Editor : Game
     protected override void OnRun()
     {
         base.OnRun();
-        RegistryManager.AddType(new ContentRegistry());
+        RegistryManager.Add(new ContentRegistry());
 
         if (Program.Version.Major <= 1)
         {

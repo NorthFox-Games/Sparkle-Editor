@@ -27,8 +27,74 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Content Include="$(SPARKLE_LIB)/**/*">
+        <Content Include="$(SPARKLE_LIB)/content/**/*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="content/**/*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\images\icon.png">
+          <Link>content\images\icon.png</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\bloom.frag">
+          <Link>content\shaders\glsl330\filter\bloom.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\blur.frag">
+          <Link>content\shaders\glsl330\filter\blur.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\cross_hatching.frag">
+          <Link>content\shaders\glsl330\filter\cross_hatching.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\cross_stitching.frag">
+          <Link>content\shaders\glsl330\filter\cross_stitching.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\dream_vision.frag">
+          <Link>content\shaders\glsl330\filter\dream_vision.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\fish_eye.frag">
+          <Link>content\shaders\glsl330\filter\fish_eye.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\fxaa.frag">
+          <Link>content\shaders\glsl330\filter\fxaa.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\gray_scale.frag">
+          <Link>content\shaders\glsl330\filter\gray_scale.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\pixelizer.frag">
+          <Link>content\shaders\glsl330\filter\pixelizer.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\posterization.frag">
+          <Link>content\shaders\glsl330\filter\posterization.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\predator.frag">
+          <Link>content\shaders\glsl330\filter\predator.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\scan_lines.frag">
+          <Link>content\shaders\glsl330\filter\scan_lines.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\filter\sobel.frag">
+          <Link>content\shaders\glsl330\filter\sobel.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\discard_alpha.frag">
+          <Link>content\shaders\glsl330\discard_alpha.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\pbr.frag">
+          <Link>content\shaders\glsl330\pbr.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\pbr.vert">
+          <Link>content\shaders\glsl330\pbr.vert</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\skybox.frag">
+          <Link>content\shaders\glsl330\skybox.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl330\skybox.vert">
+          <Link>content\shaders\glsl330\skybox.vert</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl430\pbr.frag">
+          <Link>content\shaders\glsl430\pbr.frag</Link>
+        </Content>
+        <Content Update="$(SPARKLE_LIB)\content\shaders\glsl430\pbr.vert">
+          <Link>content\shaders\glsl430\pbr.vert</Link>
         </Content>
     </ItemGroup>
     

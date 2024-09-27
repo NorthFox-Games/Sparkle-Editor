@@ -1,15 +1,13 @@
 ﻿using System.Numerics;
 using Raylib_CSharp.Geometry;
-using Sparkle_Editor.Code.Interfaces;
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Entities.Components;
 
 namespace Sparkle_Editor.Code.Entities;
 
-public class ModelRender : Entity, IEntity
+public class ModelRender : Entity
 {
     private Model _model;
-    public string Name { get; set; } = "ModelRender";
 
     public ModelRender(Vector3 position, Model model) : base(position)
     {
