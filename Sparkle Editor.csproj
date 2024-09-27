@@ -100,7 +100,7 @@
     
     <ItemGroup>
       <Reference Include="Sparkle">
-        <HintPath>$(SPARKLE_LIB)/Sparkle.dll</HintPath>
+        <HintPath>..\..\some_libs\Sparkle.dll</HintPath>
       </Reference>
     </ItemGroup>
 </Project>

@@ -21,13 +21,12 @@ public class Inspector : BaseWindow
         Vector3 tempPosition = ent.Position;
         Quaternion tempRotation = ent.Rotation;
         Vector3 tempScale = ent.Scale;
-        
+
         CopperImGui.HorizontalGroup(
-            () => {CopperImGui.Button("Delete", () => {SelectingManager.DeleteSelectedEntity();});}
-            //() => {CopperImGui.Button("Copy", () => { SelectingManager.CopyEntity();});}, 
-            //() => {CopperImGui.Button("Paste", () => { SelectingManager.PasteEntity();});},
-            //() => {CopperImGui.Button("Duplicate", () => { SelectingManager.DuplicateEntity();});
-            );
+            () => { CopperImGui.Button("Delete", () => { SelectingManager.DeleteSelectedEntity(); }); },
+            () => { CopperImGui.Button("Copy", () => { SelectingManager.CopySelectedEntity(); }); },
+            () => { CopperImGui.Button("Paste", () => { SelectingManager.PasteSelectedEntity(); }); },
+            () => { CopperImGui.Button("Duplicate", () => { SelectingManager.DuplicateSelectedEntity(); }); });
 
         CopperImGui.Separator("Information");
         
