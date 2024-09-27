@@ -1,5 +1,4 @@
-﻿using CopperDevs.DearImGui;
-using Raylib_CSharp;
+﻿using Raylib_CSharp;
 using Raylib_CSharp.Windowing;
 using Sparkle_Editor.Code.Managers;
 using Sparkle_Editor.Code.ImGui;
