@@ -15,6 +15,8 @@ public class ProjectsList : BaseWindow
         
         CopperImGui.HorizontalGroup(
             () => CopperImGui.Button("New", () => {throw new NotImplementedException();}),
-            () => { CopperImGui.Button("Open", () => {throw new NotImplementedException();}); });
+            () => { CopperImGui.Button("Open", () => {throw new NotImplementedException();}); }); //TODO: center the buttons
+        
+        CopperImGui.Separator("Last projects");
     }
 }
