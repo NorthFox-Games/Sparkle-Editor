@@ -25,10 +25,10 @@ public class Inspector : BaseWindow
         Vector3 tempScale = ent.Scale;
 
         CopperImGui.HorizontalGroup(
-            () => { CopperImGui.Button("Delete", () => { SelectingManager.DeleteSelectedEntity(); }); },
-            () => { CopperImGui.Button("Copy", () => { SelectingManager.CopySelectedEntity(); }); },
-            () => { CopperImGui.Button("Paste", () => { SelectingManager.PasteSelectedEntity(); }); },
-            () => { CopperImGui.Button("Duplicate", () => { SelectingManager.DuplicateSelectedEntity(); }); });
+            () => { CopperImGui.Button("Delete", SelectingManager.DeleteSelectedEntity); },
+            () => { CopperImGui.Button("Copy", SelectingManager.CopySelectedEntity); },
+            () => { CopperImGui.Button("Paste", SelectingManager.PasteSelectedEntity); },
+            () => { CopperImGui.Button("Duplicate", SelectingManager.DuplicateSelectedEntity); });
 
         CopperImGui.Separator("Information");
         

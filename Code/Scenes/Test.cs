@@ -64,7 +64,11 @@ public class Test : Scene
         ent.Rotation = ev.Entity.Rotation;
         ent.Scale = ev.Entity.Scale;
         ent.Tag = ev.Entity.Tag;
-        ent.AddComponent(ev.Entity.GetComponent<ModelRenderer>());
+
+        foreach (var component in ev.Entity.GetComponents())
+        {
+            ent.AddComponent(component.Clone());
+        }
         
         AddEntity(ent);
     }
