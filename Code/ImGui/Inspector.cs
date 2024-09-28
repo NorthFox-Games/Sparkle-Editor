@@ -49,9 +49,9 @@ public class Inspector : BaseWindow
 
             Logger.Debug($"ent.Rotation: {ent.Rotation} | temp rotation: {tempRotation} | eulerRotation: {eulerRotation}");
 
-            CopperImGui.DragValue($"Position", ref tempPosition);
-            CopperImGui.DragValue($"Rotation", ref eulerRotation);
-            CopperImGui.DragValue($"Scale", ref tempScale);
+            CopperImGui.DragValue("Position", ref tempPosition);
+            CopperImGui.DragValue("Rotation", ref eulerRotation);
+            CopperImGui.DragValue("Scale", ref tempScale);
 
             tempRotation = (eulerRotation * (MathF.PI / 180)).FromEulerAngles();
 
@@ -71,14 +71,7 @@ public class Inspector : BaseWindow
             {
                 Vector3 offsetPos = comp.OffsetPos;
                     
-                if (ImGuiNET.ImGui.TreeNodeEx("Offset Position", flag))
-                {
-                    CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref offsetPos.X);});
-                    CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref offsetPos.Y);}); 
-                    CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref offsetPos.Z);});
-            
-                    ImGuiNET.ImGui.TreePop();
-                }
+                CopperImGui.DragValue("Offset Position", ref offsetPos);
                 
                 comp.OffsetPos = offsetPos;
                 

@@ -2,9 +2,7 @@
 using Raylib_CSharp.Interact;
 using Raylib_CSharp.Rendering;
 using Sparkle_Editor.Code.Entities;
-using Sparkle_Editor.Code.EventArgs;
 using Sparkle.CSharp.Entities;
-using Sparkle.CSharp.Entities.Components;
 using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Scenes;
 
@@ -14,8 +12,6 @@ public class Test : Scene
 {
     public Test() : base("Test", SceneType.Scene3D) { }
     
-    private static event EventHandler<CreateEntityEventArgs> CreateEntityEvent; //nado sdelat: find new realization because its a shit
-
     protected override void Init() 
     {
         base.Init();
@@ -33,8 +29,6 @@ public class Test : Scene
         AddEntity(new ModelRender(new Vector3(6f,0f,0f), ContentRegistry.Models["Plane"]));
         AddEntity(new ModelRender(new Vector3(8f,0f,0f), ContentRegistry.Models["Cylinder"]));
         AddEntity(new Gizmos(new Vector3(-8f,0f,0f)));
-        
-        CreateEntityEvent += OnCreateEntity;
     }
     
     protected override void Draw() 
@@ -55,30 +49,6 @@ public class Test : Scene
         if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
         {
             Logger.Info($"Entity ID: {hit.Id}");
-        }
-    }
-    
-    private void OnCreateEntity(object sender, CreateEntityEventArgs ev)
-    {
-        var ent = new Entity(ev.Entity.Position);
-        ent.Rotation = ev.Entity.Rotation;
-        ent.Scale = ev.Entity.Scale;
-        ent.Tag = ev.Entity.Tag;
-
-        foreach (var component in ev.Entity.GetComponents())
-        {
-            ent.AddComponent(component.Clone());
-        }
-        
-        AddEntity(ent);
-    }
-    
-    public static void CreateEntity(Entity entity)
-    {
-        if (CreateEntityEvent != null)
-        {
-            CreateEntityEventArgs args = new CreateEntityEventArgs(entity);
-            CreateEntityEvent("skull", args);
         }
     }
 }

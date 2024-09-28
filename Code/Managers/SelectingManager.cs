@@ -1,6 +1,6 @@
-using Sparkle_Editor.Code.Scenes;
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Logging;
+using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code.Managers;
 
@@ -31,8 +31,8 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
     public static void PasteSelectedEntity()
     {
         if (Buffer == null) return;
-        
-        Test.CreateEntity(Buffer);
+
+        Duplicate(Buffer);
         
         Logger.Info("Entity has been copied!");
     }
@@ -41,8 +41,27 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
     {
         if (SelectedEntity == null) return;
         
-        Test.CreateEntity(SelectedEntity);
+        Duplicate(SelectedEntity);
         
         Logger.Info("Entity has been copied!");
+    }
+
+    private static Entity Duplicate(Entity entity)
+    {
+        Entity duplicate = new Entity(entity.Position)
+        {
+            Rotation = entity.Rotation,
+            Scale = entity.Scale,
+            Tag = entity.Tag
+        };
+
+        foreach (var component in entity.GetComponents())
+        {
+            duplicate.AddComponent(component.Clone());
+        }
+        
+        SceneManager.ActiveScene?.AddEntity(duplicate);
+        
+        return duplicate;
     }
 }

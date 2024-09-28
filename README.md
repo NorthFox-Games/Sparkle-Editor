@@ -12,17 +12,3 @@ Made by: Ivan Timersky & everyofflineuser
 ### Sparkle Editor is a scene editor for Sparkle Engine (like hammer for source)
 
 [Releases]: https://github.com/NorthFox-Games/Sparkle-Editor/releases
-
-## Commit Description
-| Name | Description                                                        |
-|----------|-----------------------------------------------------------------|
-| sec      | Security                                        |
-| ci       | Editting CI/CD workflow                              |
-| docs	   | Updating documentation                                         |
-| feat	   | adding new functionality                                   |
-| fix	   | fix problems                                              |
-| perf	   | Changes aimed at improving productivity          |
-| refactor | Edit code without bug fixes or adding new features |
-| revert   | Rollback to previous commits                                     |
-| style	   | Edits by code style (tabs, indents, dots, commas, etc)     |
-| test	   | Adding tests                                               |

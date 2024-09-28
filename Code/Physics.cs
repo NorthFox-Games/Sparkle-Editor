@@ -22,10 +22,10 @@ public static class Physics
         Vector2 mousePosition = Input.GetMousePosition();
 
         // get ray of camera
-        Ray mouseRay = SceneManager.ActiveCam3D.GetMouseRay(mousePosition);
+        Ray mouseRay = SceneManager.ActiveCam3D!.GetMouseRay(mousePosition);
 
         // foreach all entities on scene
-        foreach (Entity entity in SceneManager.ActiveScene.GetEntities())
+        foreach (Entity entity in SceneManager.ActiveScene?.GetEntities()!)
         {
             Vector3 entityPosition = entity.Position; // 3D pos entity
             Vector3 entitySize = entity.Scale;        // Scale of entity
@@ -43,7 +43,7 @@ public static class Physics
                 }
             }
         }
-        
+
         return false;
     }
     
@@ -53,7 +53,7 @@ public static class Physics
     public static bool IsEntityInCameraRange(Entity entity, float range)
     {
         Vector3 entityPosition = entity.Position; // get 3D pos entity
-        Vector3 cameraPosition = SceneManager.ActiveCam3D.Position;
+        Vector3 cameraPosition = SceneManager.ActiveCam3D!.Position;
 
         // Calculate the distance between the camera and the entity
         float distance = Vector3.Distance(entityPosition, cameraPosition);
@@ -72,9 +72,7 @@ public static class Physics
 
         if (tmin > tmax)
         {
-            float temp = tmin;
-            tmin = tmax;
-            tmax = temp;
+            (tmin, tmax) = (tmax, tmin);
         }
 
         float tymin = (minBounds.Y - ray.Position.Y) / ray.Direction.Y;
@@ -82,9 +80,7 @@ public static class Physics
 
         if (tymin > tymax)
         {
-            float temp = tymin;
-            tymin = tymax;
-            tymax = temp;
+            (tymin, tymax) = (tymax, tymin);
         }
 
         if ((tmin > tymax) || (tymin > tmax))
@@ -96,14 +92,12 @@ public static class Physics
         if (tymax < tmax)
             tmax = tymax;
 
-        float tzmin = (minBounds.Z - SceneManager.ActiveCam3D.Position.Z) / ray.Direction.Z;
+        float tzmin = (minBounds.Z - SceneManager.ActiveCam3D!.Position.Z) / ray.Direction.Z;
         float tzmax = (maxBounds.Z - SceneManager.ActiveCam3D.Position.Z) / ray.Direction.Z;
 
         if (tzmin > tzmax)
         {
-            float temp = tzmin;
-            tzmin = tzmax;
-            tzmax = temp;
+            (tzmin, tzmax) = (tzmax, tzmin);
         }
 
         if ((tmin > tzmax) || (tzmin > tmax))

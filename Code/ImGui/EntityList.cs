@@ -15,9 +15,9 @@ public class EntityList : BaseWindow
     {
         base.WindowUpdate();
         
-        if (ImGuiNET.ImGui.TreeNodeEx(SceneManager.ActiveScene.Name, ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick))
+        if (ImGuiNET.ImGui.TreeNodeEx(SceneManager.ActiveScene?.Name, ImGuiTreeNodeFlags.DefaultOpen | ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick))
         {
-            foreach (var entity in SceneManager.ActiveScene.GetEntities())
+            foreach (var entity in SceneManager.ActiveScene?.GetEntities()!)
             {
                 if (entity == null || entity.HasDisposed || entity.Id == 1) continue;
             
@@ -36,10 +36,5 @@ public class EntityList : BaseWindow
                 }
             }
         }
-        
-        (string, Action?)[] MenuActions = new (string, Action?)[] {("Scene", () => CopperImGui.MenuItem("New Scene",
-            () => { Logger.Info("file test");}))};
-
-        CopperImGui.MenuBar(true, MenuActions);
     }
 }
