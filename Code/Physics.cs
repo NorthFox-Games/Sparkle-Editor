@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Raylib_CSharp.Camera.Cam3D;
 using Raylib_CSharp.Collision;
 using Raylib_CSharp.Interact;
 using Sparkle.CSharp.Entities;
@@ -38,6 +39,7 @@ public static class Physics
             {
                 if (IsEntityInCameraRange(entity, Range))
                 {
+                    if (entity.Tag == "camera3D") continue;
                     hit = entity;
                     return true;
                 }
