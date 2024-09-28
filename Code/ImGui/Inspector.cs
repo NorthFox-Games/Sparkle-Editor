@@ -1,9 +1,11 @@
 using System.Numerics;
+using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui;
 using CopperDevs.DearImGui.Attributes;
 using CopperDevs.DearImGui.Rendering;
 using ImGuiNET;
 using Sparkle_Editor.Code.Managers;
+using Sparkle.CSharp.Logging;
 
 namespace Sparkle_Editor.Code.ImGui;
 
@@ -43,33 +45,16 @@ public class Inspector : BaseWindow
 
         if (ImGuiNET.ImGui.TreeNodeEx("Transform", flag))
         {
-            if (ImGuiNET.ImGui.TreeNodeEx("Position", flag))
-            {
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempPosition.X);});
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempPosition.Y);}); 
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempPosition.Z);});
-            
-                ImGuiNET.ImGui.TreePop();
-            }
-            //doesnt work
-            if (ImGuiNET.ImGui.TreeNodeEx("Rotation", flag))
-            {
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempRotation.X);});
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempRotation.Y);}); 
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempRotation.Z);});
-            
-                ImGuiNET.ImGui.TreePop();
-            }
-        
-            if (ImGuiNET.ImGui.TreeNodeEx("Scale", flag))
-            {
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("X", ref tempScale.X);});
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Y", ref tempScale.Y);}); 
-                CopperImGui.HorizontalGroup(() => {ImGuiNET.ImGui.DragFloat("Z", ref tempScale.Z);});
-            
-                ImGuiNET.ImGui.TreePop();
-            }
-            
+            var eulerRotation = tempRotation.ToEulerAngles() * (180 / MathF.PI);
+
+            Logger.Debug($"ent.Rotation: {ent.Rotation} | temp rotation: {tempRotation} | eulerRotation: {eulerRotation}");
+
+            CopperImGui.DragValue($"Position", ref tempPosition);
+            CopperImGui.DragValue($"Rotation", ref eulerRotation);
+            CopperImGui.DragValue($"Scale", ref tempScale);
+
+            tempRotation = (eulerRotation * (MathF.PI / 180)).FromEulerAngles();
+
             ImGuiNET.ImGui.TreePop();
         }
         
