@@ -23,9 +23,9 @@ public class EntityList : BaseWindow
             
                 ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.Leaf;
                 if (SelectingManager.SelectedEntity == entity) flag |= ImGuiTreeNodeFlags.Selected;
-            
+                
                 if (ImGuiNET.ImGui.TreeNodeEx($"{entity.Id}: Entity", flag))
-                {
+                { 
                     if (ImGuiNET.ImGui.IsItemClicked())
                     {
                         Logger.Info($"Entity: {entity.Id}");

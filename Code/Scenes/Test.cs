@@ -2,6 +2,7 @@
 using Raylib_CSharp.Interact;
 using Raylib_CSharp.Rendering;
 using Sparkle_Editor.Code.Entities;
+using Sparkle_Editor.Code.Managers;
 using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Scenes;
@@ -16,8 +17,7 @@ public class Test : Scene
     {
         base.Init();
         
-        Vector3 pos = new(10.0f, 10.0f, 10.0f);
-        EditorCam cam3D = new(pos, Vector3.Zero, Vector3.UnitY);
+        EditorCam cam3D = new(new Vector3(10, 10, 10), Vector3.Zero, Vector3.UnitY);
         cam3D.MouseSensitivity = 1f;
         
         AddEntity(cam3D);
@@ -48,6 +48,7 @@ public class Test : Scene
 
         if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
         {
+            SelectingManager.SelectedEntity = hit;
             Logger.Info($"Entity ID: {hit.Id}");
         }
     }

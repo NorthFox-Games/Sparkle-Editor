@@ -59,7 +59,7 @@ public class Inspector : BaseWindow
         }
         
         ent.Position = tempPosition;
-        ent.Rotation = tempRotation;
+        ent.Rotation = tempRotation; 
         ent.Scale = tempScale;
         
         CopperImGui.Separator("Components");
@@ -71,7 +71,7 @@ public class Inspector : BaseWindow
             {
                 Vector3 offsetPos = comp.OffsetPos;
                     
-                CopperImGui.DragValue("Offset Position", ref offsetPos);
+                CopperImGui.DragValue("Offset", ref offsetPos);
                 
                 comp.OffsetPos = offsetPos;
                 
