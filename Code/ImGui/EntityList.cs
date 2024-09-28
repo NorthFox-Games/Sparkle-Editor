@@ -20,12 +20,12 @@ public class EntityList : BaseWindow
             foreach (var entity in SceneManager.ActiveScene?.GetEntities()!)
             {
                 if (entity == null || entity.HasDisposed || entity.Id == 1) continue;
-            
+                
                 ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.Leaf;
                 if (SelectingManager.SelectedEntity == entity) flag |= ImGuiTreeNodeFlags.Selected;
                 
                 if (ImGuiNET.ImGui.TreeNodeEx($"{entity.Id}: Entity", flag))
-                { 
+                {
                     if (ImGuiNET.ImGui.IsItemClicked())
                     {
                         Logger.Info($"Entity: {entity.Id}");
