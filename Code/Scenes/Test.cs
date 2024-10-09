@@ -44,9 +44,15 @@ public class Test : Scene
     protected override void Update()
     {
         base.Update();
-
-        if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
+        
+        if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hitM) && Input.IsKeyDown(KeyboardKey.LeftControl))
         {
+            SelectingManager.SelectedEntity.Add(hitM);
+            Logger.Info($"Entity ID: {hitM.Id}");
+        }
+        else if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
+        {
+            SelectingManager.SelectedEntity.Clear();
             SelectingManager.SelectedEntity.Add(hit);
             Logger.Info($"Entity ID: {hit.Id}");
         }

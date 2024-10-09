@@ -13,11 +13,14 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
     {
         if (SelectedEntity == null) return;
 
-        foreach (var ent in SelectedEntity)
+        var entitiesToRemove = SelectedEntity.ToList();
+        
+        foreach (var ent in entitiesToRemove)
         {
             ent.Dispose();
             SelectedEntity.Remove(ent);
         }
+        entitiesToRemove.Clear();
         
         Logger.Info("Entity has been deleted!");
     }
@@ -37,7 +40,7 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
         
         foreach (var ent in Buffer)
         {
-            Duplicate(ent);
+            CreateEntity(ent);
         }
         
         Logger.Info("Entity has been copied!");
@@ -49,13 +52,13 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
         
         foreach (var ent in SelectedEntity)
         {
-            Duplicate(ent);
+            CreateEntity(ent);
         }
         
         Logger.Info("Entity has been copied!");
     }
 
-    private static Entity Duplicate(Entity entity)
+    public static Entity CreateEntity(Entity entity)
     {
         Entity duplicate = new Entity(entity.Position)
         {
