@@ -28,7 +28,6 @@ public class Test : Scene
         AddEntity(new ModelRender(new Vector3(4f,0f,0f), ContentRegistry.Models["Sphere"]));
         AddEntity(new ModelRender(new Vector3(6f,0f,0f), ContentRegistry.Models["Plane"]));
         AddEntity(new ModelRender(new Vector3(8f,0f,0f), ContentRegistry.Models["Cylinder"]));
-        AddEntity(new Gizmos(new Vector3(-8f,0f,0f)));
     }
     
     protected override void Draw() 
@@ -48,7 +47,7 @@ public class Test : Scene
 
         if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
         {
-            SelectingManager.SelectedEntity = hit;
+            SelectingManager.SelectedEntity.Add(hit);
             Logger.Info($"Entity ID: {hit.Id}");
         }
     }

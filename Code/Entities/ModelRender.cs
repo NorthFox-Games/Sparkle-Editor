@@ -17,6 +17,8 @@ public class ModelRender : Entity
     protected override void Init()
     {
         base.Init();
+
+        Tag = "Primitive";
         
         AddComponent(new ModelRenderer(_model, Vector3.Zero));
         

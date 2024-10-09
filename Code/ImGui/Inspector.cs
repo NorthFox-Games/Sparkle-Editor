@@ -16,13 +16,14 @@ public class Inspector : BaseWindow
     {
         base.WindowUpdate();
         
-        var ent = SelectingManager.SelectedEntity;
+        var ent = SelectingManager.SelectedEntity.LastOrDefault();
          
         if (ent == null) return;
 
         Vector3 tempPosition = ent.Position;
         Quaternion tempRotation = ent.Rotation;
         Vector3 tempScale = ent.Scale;
+        string tempTag = ent.Tag;
 
         CopperImGui.HorizontalGroup(
             () => { CopperImGui.Button("Delete", SelectingManager.DeleteSelectedEntity); },
@@ -31,12 +32,21 @@ public class Inspector : BaseWindow
             () => { CopperImGui.Button("Duplicate", SelectingManager.DuplicateSelectedEntity); });
 
         CopperImGui.Separator("Information");
-        
-        CopperImGui.Text($"Id: {ent.Id}");
-        //CopperImGui.Text($"Name: {ent}");
-        if (!string.IsNullOrEmpty(ent.Tag))
+
+        string ids = "";
+        foreach (var entity in SelectingManager.SelectedEntity)
         {
-            CopperImGui.Text($"Tag: {ent.Tag}");
+            ids += $"{entity.Id}, ";
+        }
+        CopperImGui.Text($"Id: {ids}");
+        
+        if (SelectingManager.SelectedEntity.Count > 1)
+        {
+            CopperImGui.Text("Multi-edit not supported!");
+        }
+        else
+        {
+            ImGuiNET.ImGui.InputText("Tag", ref tempTag, 25);
         }
         
         CopperImGui.Space();
@@ -45,22 +55,30 @@ public class Inspector : BaseWindow
 
         if (ImGuiNET.ImGui.TreeNodeEx("Transform", flag))
         {
-            var eulerRotation = tempRotation.ToEulerAngles() * (180 / MathF.PI);
+            if (SelectingManager.SelectedEntity.Count > 1)
+            {
+                CopperImGui.Text("Multi-edit not supported!");
+            }
+            else
+            {
+                var eulerRotation = tempRotation.ToEulerAngles() * (180 / MathF.PI);
 
-            Logger.Debug($"ent.Rotation: {ent.Rotation} | temp rotation: {tempRotation} | eulerRotation: {eulerRotation}");
+                Logger.Debug($"ent.Rotation: {ent.Rotation} | temp rotation: {tempRotation} | eulerRotation: {eulerRotation}");
 
-            CopperImGui.DragValue("Position", ref tempPosition);
-            CopperImGui.DragValue("Rotation", ref eulerRotation);
-            CopperImGui.DragValue("Scale", ref tempScale);
+                CopperImGui.DragValue("Position", ref tempPosition);
+                CopperImGui.DragValue("Rotation", ref eulerRotation);
+                CopperImGui.DragValue("Scale", ref tempScale);
 
-            tempRotation = (eulerRotation * (MathF.PI / 180)).FromEulerAngles();
-
+                tempRotation = (eulerRotation * (MathF.PI / 180)).FromEulerAngles();
+            }
+            
             ImGuiNET.ImGui.TreePop();
         }
         
         ent.Position = tempPosition;
         ent.Rotation = tempRotation; 
         ent.Scale = tempScale;
+        ent.Tag = tempTag;
         
         CopperImGui.Separator("Components");
         
@@ -69,11 +87,18 @@ public class Inspector : BaseWindow
             string compName = comp.ToString().Replace(comp.GetType().Namespace + ".", string.Empty);
             if (ImGuiNET.ImGui.TreeNodeEx(compName, flag))
             {
-                Vector3 offsetPos = comp.OffsetPos;
+                if (SelectingManager.SelectedEntity.Count > 1)
+                {
+                    CopperImGui.Text("Multi-edit not supported!");
+                }
+                else
+                {
+                    Vector3 offsetPos = comp.OffsetPos;
                     
-                CopperImGui.DragValue("Offset", ref offsetPos);
+                    CopperImGui.DragValue("Offset", ref offsetPos);
                 
-                comp.OffsetPos = offsetPos;
+                    comp.OffsetPos = offsetPos;
+                }
                 
                 ImGuiNET.ImGui.TreePop();
             }

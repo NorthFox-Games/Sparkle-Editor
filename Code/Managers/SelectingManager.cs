@@ -4,17 +4,20 @@ using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code.Managers;
 
-public static class SelectingManager // componenty pohui na copirovanie, Ispravit!
+public static class SelectingManager // componenty pohui na copirovanie, Ispravit! // ne pihi translitom debil!
 {
-    public static Entity SelectedEntity { get; set; }
-    public static Entity Buffer { get; set; }
+    public static List<Entity> SelectedEntity { get; set; } = new();
+    public static List<Entity> Buffer { get; set; }
 
     public static void DeleteSelectedEntity()
     {
         if (SelectedEntity == null) return;
-        
-        SelectedEntity.Dispose();
-        SelectedEntity = null;
+
+        foreach (var ent in SelectedEntity)
+        {
+            ent.Dispose();
+            SelectedEntity.Remove(ent);
+        }
         
         Logger.Info("Entity has been deleted!");
     }
@@ -31,8 +34,11 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
     public static void PasteSelectedEntity()
     {
         if (Buffer == null) return;
-
-        Duplicate(Buffer);
+        
+        foreach (var ent in Buffer)
+        {
+            Duplicate(ent);
+        }
         
         Logger.Info("Entity has been copied!");
     }
@@ -41,7 +47,10 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
     {
         if (SelectedEntity == null) return;
         
-        Duplicate(SelectedEntity);
+        foreach (var ent in SelectedEntity)
+        {
+            Duplicate(ent);
+        }
         
         Logger.Info("Entity has been copied!");
     }

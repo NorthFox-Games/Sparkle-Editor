@@ -2,6 +2,7 @@
 using CopperDevs.DearImGui.Attributes;
 using CopperDevs.DearImGui.Rendering;
 using ImGuiNET;
+using Raylib_CSharp.Interact;
 using Sparkle_Editor.Code.Managers;
 using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Scenes;
@@ -22,14 +23,27 @@ public class EntityList : BaseWindow
                 if (entity == null || entity.HasDisposed || entity.Id == 1) continue;
                 
                 ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags.Leaf;
-                if (SelectingManager.SelectedEntity == entity) flag |= ImGuiTreeNodeFlags.Selected;
+                if (SelectingManager.SelectedEntity.Contains(entity)) flag |= ImGuiTreeNodeFlags.Selected;
                 
-                if (ImGuiNET.ImGui.TreeNodeEx($"{entity.Id}: Entity", flag))
+                string name = $"{entity.Id}: Entity";
+                
+                if (!string.IsNullOrEmpty(entity.Tag))
                 {
-                    if (ImGuiNET.ImGui.IsItemClicked())
+                    name = $"{entity.Id}: {entity.Tag}";
+                }
+                
+                if (ImGuiNET.ImGui.TreeNodeEx(name, flag))
+                {
+                    if (ImGuiNET.ImGui.IsItemClicked() && Input.IsKeyDown(KeyboardKey.LeftControl))
                     {
                         Logger.Info($"Entity: {entity.Id}");
-                        SelectingManager.SelectedEntity = entity;
+                        SelectingManager.SelectedEntity.Add(entity);
+                    }
+                    else if (ImGuiNET.ImGui.IsItemClicked())
+                    {
+                        Logger.Info($"Entity: {entity.Id}");
+                        SelectingManager.SelectedEntity.Clear();
+                        SelectingManager.SelectedEntity.Add(entity);
                     }
                 
                     ImGuiNET.ImGui.TreePop();
