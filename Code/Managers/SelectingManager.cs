@@ -58,7 +58,7 @@ public static class SelectingManager // componenty pohui na copirovanie, Ispravi
         Logger.Info("Entity has been copied!");
     }
 
-    public static Entity CreateEntity(Entity entity)
+    private static Entity CreateEntity(Entity entity)
     {
         Entity duplicate = new Entity(entity.Position)
         {
