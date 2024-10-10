@@ -1,10 +1,6 @@
 ﻿using System.Numerics;
-using Raylib_CSharp.Interact;
 using Raylib_CSharp.Rendering;
 using Sparkle_Editor.Code.Entities;
-using Sparkle_Editor.Code.Managers;
-using Sparkle.CSharp.Entities;
-using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Scenes;
 
 namespace Sparkle_Editor.Code.Scenes;
@@ -39,22 +35,5 @@ public class Test : Scene
         Graphics.DrawGrid(100, 1);
         
         SceneManager.ActiveCam3D.EndMode3D();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-        
-        if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hitM) && Input.IsKeyDown(KeyboardKey.LeftControl))
-        {
-            SelectingManager.SelectedEntity.Add(hitM);
-            Logger.Info($"Entity ID: {hitM.Id}");
-        }
-        else if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
-        {
-            SelectingManager.SelectedEntity.Clear();
-            SelectingManager.SelectedEntity.Add(hit);
-            Logger.Info($"Entity ID: {hit.Id}");
-        }
     }
 }

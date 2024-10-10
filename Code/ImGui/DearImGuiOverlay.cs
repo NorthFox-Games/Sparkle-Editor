@@ -27,6 +27,8 @@ public class DearImGuiOverlay : Overlay
             {
                 CopperImGui.MenuItem("New", () => Logger.Info("New Project"));
                 CopperImGui.MenuItem("Open", () => Logger.Info(ProjectManager.OpenExistProject()!));
+                CopperImGui.MenuItem("Save", () => Logger.Info("Save Project"));
+                CopperImGui.MenuItem("Save as", () => Logger.Info("Save as Project"));
             }),
             
             new ValueTuple<string, Action>("Create Entity", () =>

@@ -1,8 +1,10 @@
 ﻿using Raylib_CSharp;
+using Raylib_CSharp.Interact;
 using Raylib_CSharp.Windowing;
 using Sparkle_Editor.Code.Managers;
 using Sparkle_Editor.Code.ImGui;
 using Sparkle.CSharp;
+using Sparkle.CSharp.Entities;
 using Sparkle.CSharp.Logging;
 using Sparkle.CSharp.Overlays;
 using Sparkle.CSharp.Registries;
@@ -49,7 +51,40 @@ public class Editor : Game
         Window.SetTitle($"{_title} [FPS: {Time.GetFPS()}]");
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        
+        if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hitM) && Input.IsKeyDown(KeyboardKey.LeftControl))
+        {
+            SelectingManager.SelectedEntity.Add(hitM);
+            Logger.Info($"Entity ID: {hitM.Id}");
+        }
+        else if (Input.IsMouseButtonReleased(MouseButton.Left) && Physics.Raycast(out Entity hit))
+        {
+            SelectingManager.SelectedEntity.Clear();
+            SelectingManager.SelectedEntity.Add(hit);
+            Logger.Info($"Entity ID: {hit.Id}");
+        }
 
+        if (Input.IsKeyDown(KeyboardKey.LeftControl) && Input.IsKeyPressed(KeyboardKey.C))
+        {
+            SelectingManager.CopySelectedEntity();
+        }
+        if (Input.IsKeyDown(KeyboardKey.LeftControl) && Input.IsKeyPressed(KeyboardKey.V))
+        {
+            SelectingManager.PasteSelectedEntity();
+        }
+        if (Input.IsKeyDown(KeyboardKey.LeftControl) && Input.IsKeyPressed(KeyboardKey.D))
+        {
+            SelectingManager.DuplicateSelectedEntity();
+        }
+        if (Input.IsKeyPressed(KeyboardKey.Delete))
+        {
+            SelectingManager.DeleteSelectedEntity();
+        }
+    }
+    
     protected override void OnClose()
     {
         base.OnClose();
